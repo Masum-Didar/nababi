@@ -771,7 +771,7 @@ a:focus {
     position: relative;
     display: -webkit-box;
     display: -ms-flexbox;
-    display: flex;
+    /*display: flex;*/
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
@@ -784,6 +784,7 @@ a:focus {
 }
 
 .client_section .box .img-box img {
+    height: 110px;
     border-radius: 100%;
     border: 5px solid #ffbe33;
     position: relative;
