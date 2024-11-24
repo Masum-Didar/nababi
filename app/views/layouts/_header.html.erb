@@ -33,6 +33,10 @@
           <%= link_to new_product_path, class: "user_link" do %>
             <i class="fa fa-user" aria-hidden="true"></i> User
           <% end %>
+          <%#= link_to destroy_user_session_path, method: :delete, class: "user_link" do %>
+<!--            <i class="fa fa-user" aria-hidden="true"></i> Log Out-->
+          <%# end %>
+          <%= button_to "Log Out", destroy_user_session_path, method: :delete, class: "btn btn-link user_link" %>
 
           <a class="cart_link" href="#">
             <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
