@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+<!--    <link rel="shortcut icon" href="<%#= asset_path 'favicon.png' %>" type="image/png">-->
+
     <title>Nababi</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -8,6 +11,7 @@
     <%= csp_meta_tag %>
 
     <%= yield :head %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <link rel="manifest" href="/manifest.json">
     <link rel="icon" href="/icon.png" type="image/png">
@@ -17,7 +21,15 @@
     <%= javascript_importmap_tags %>
   </head>
 
+
+  <!-- header section start -->
+  <%= render 'layouts/header' %>
+  <!-- end header section -->
   <body>
     <%= yield %>
   </body>
+  <!-- footer section -->
+<%= render 'layouts/footer' %>
+  <!-- footer section -->
+
 </html>

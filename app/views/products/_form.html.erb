@@ -1,39 +1,49 @@
-<%= form_with(model: product) do |form| %>
-  <% if product.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+<section class="book_section layout_padding">
+  <%= form_with(model: product) do |form| %>
+    <% if product.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
 
-      <ul>
-        <% product.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+        <ul>
+          <% product.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form_container">
+          <div>
+            <%= form.label :name, style: "display: block" %>
+            <%= form.text_field :name, class: "form-control", placeholder: "Name" %>
+          </div>
+          <div>
+            <%= form.label :description, style: "display: block" %>
+            <%= form.text_area :description, class: "form-control", placeholder: "Description" %>
+          </div>
+          <div>
+            <%= form.label :images, style: "display: block" %>
+            <%= form.file_field :images, multiple: true, direct_upload: true, class: "form-control" %>
+          </div>
+          <div>
+            <%= form.label :price, style: "display: block" %>
+            <%= form.text_field :price, class: "form-control", placeholder: "Price" %>
+          </div>
+          <div>
+            <button>
+              <%= form.submit "Save", class: "btn " %>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="map_container">
+          <div id="googleMap"></div>
+        </div>
+      </div>
     </div>
   <% end %>
-
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_area :description %>
-  </div>
-
-  <div class="field">
-    <%= form.label :images %>
-    <%= form.file_field :images, multiple: true, direct_upload: true %>
-
-  </div>
-
-
-  <div>
-    <%= form.label :price, style: "display: block" %>
-    <%= form.text_field :price %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+</section>

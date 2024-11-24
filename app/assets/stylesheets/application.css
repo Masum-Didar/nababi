@@ -155,6 +155,7 @@ a:focus {
 
 .header_section {
     padding: 15px 0;
+    background-color: #0c0c0c;
 }
 
 .header_section .container-fluid {
