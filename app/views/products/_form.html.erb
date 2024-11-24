@@ -1,4 +1,4 @@
-<section class="book_section layout_padding">
+<section class="book_section">
   <%= form_with(model: product) do |form| %>
     <% if product.errors.any? %>
       <div style="color: red">
@@ -13,33 +13,44 @@
     <% end %>
 
     <div class="row">
-      <div class="col-md-6">
-        <div class="form_container">
-          <div>
-            <%= form.label :name, style: "display: block" %>
-            <%= form.text_field :name, class: "form-control", placeholder: "Name" %>
-          </div>
-          <div>
-            <%= form.label :description, style: "display: block" %>
-            <%= form.text_area :description, class: "form-control", placeholder: "Description" %>
-          </div>
-          <div>
-            <%= form.label :images, style: "display: block" %>
-            <%= form.file_field :images, multiple: true, direct_upload: true, class: "form-control" %>
-          </div>
-          <div>
-            <%= form.label :price, style: "display: block" %>
-            <%= form.text_field :price, class: "form-control", placeholder: "Price" %>
-          </div>
-          <div>
-            <button>
-              <%= form.submit "Save", class: "btn " %>
-            </button>
+      <div class="col-md-4">
+        <div class="map_container">
+          <div id="googleMap"></div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card" style="padding: 10px; background-color: #f8e9bb; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); border-radius: 8px;">
+
+          <div class="form_container">
+            <div>
+              <%= form.label :name, style: "display: block" %>
+              <%= form.text_field :name, class: "form-control", placeholder: "Name" %>
+            </div>
+            <div>
+              <%= form.label :description, style: "display: block" %>
+              <%= form.text_area :description, class: "form-control", placeholder: "Description" %>
+            </div>
+            <div>
+              <%= form.label :price, style: "display: block" %>
+              <%= form.text_field :price, class: "form-control", placeholder: "Price" %>
+            </div>
+            <div>
+              <%= form.label :discount, style: "display: block" %>
+              <%= form.text_field :discount, class: "form-control", placeholder: "Diacount" %>
+            </div>
+            <div>
+              <%= form.label :images, style: "display: block" %>
+              <%= form.file_field :images, multiple: true, direct_upload: true, class: "form-control" %>
+            </div>
+            <div style="display: flex; justify-content: center; align-items: center; margin-top: 10px;">
+              <button style="height: 40px; width: 150px; padding: 0;">
+                <%= form.submit "Save", class: "btn" %>
+              </button>
+            </div>
           </div>
         </div>
       </div>
-
-      <div class="col-md-6">
+      <div class="col-md-4">
         <div class="map_container">
           <div id="googleMap"></div>
         </div>

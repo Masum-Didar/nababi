@@ -630,11 +630,10 @@ a:focus {
       height: 50px;
       margin-bottom: 25px;
       padding-left: 25px;
-      border: 1px solid #999;
+      //border: 1px solid #999;
       outline: none;
       color: $black;
       border-radius: 5px;
-      outline: none;
       box-shadow: none;
 
       &::placeholder {
