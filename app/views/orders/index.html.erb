@@ -1,0 +1,37 @@
+  <style>
+
+  </style>
+
+
+
+
+  <table id="custom-table">
+    <tr>
+      <th>Id</th>
+      <th>User Id</th>
+      <th>Payment Status</th>
+      <th>Payment Method</th>
+      <th>Status</th>
+      <th>Tracking Number</th>
+      <th>Shipping Address</th>
+      <th>Order Date</th>
+      <th>Delivery Date</th>
+    </tr>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= order.id %></td>
+        <td><%= order.user_id %></td>
+        <td><%= order.payment_status %></td>
+        <td><%= order.payment_method %></td>
+        <td><%= order.status %></td>
+        <td><%= order.tracking_number %></td>
+        <td><%= order.shipping_address %></td>
+        <td><%= order.order_date %></td>
+        <td><%= order.delivery_date %></td>
+      </tr>
+    <% end %>
+  </table>
+
+
+
+

@@ -19,17 +19,20 @@
     <p class="description">
       <%= @product.description %>
     </p>
-    <form class="product-form">
-      <label for="quantity">QTY</label>
-      <div class="quantity-wrapper">
-        <button type="button" class="quantity-btn">-</button>
-        <input type="number" id="quantity" name="quantity" value="1" min="1">
-        <button type="button" class="quantity-btn">+</button>
-      </div>
-      <%#= button_to "Add to Cart", cart_path(product_id: @product.id), method: :post, class: "add-to-cart" %>
-      <button type="submit" class="add-to-cart">Add to Cart</button>
 
-    </form>
+    <%= form_with url: orders_path, method: :post do |f| %>
+      <%= f.hidden_field :product_id, value: @product.id %>
+      <%= f.hidden_field :user_id, value: current_user.id %> <!-- User ID -->
+      <%= f.hidden_field :total_price, value: @product.price %> <!-- Total price -->
+
+      <div class="quantity-wrapper">
+        <label for="quantity">QTY</label>
+        <input type="number" id="quantity" name="quantity" value="1" min="1">
+      </div>
+
+      <%= f.submit "Place Order", class: "add-to-cart" %>
+    <% end %>
+
     <p class="member-offer">
       Holstee Members save 20%! <a href="#">Login</a> or <a href="#">Join Today.</a>
     </p>
