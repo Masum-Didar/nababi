@@ -22,11 +22,11 @@
       <%= @product.description %>
     </p>
     <div style="text-align: left; margin: 20px 0;">
-      <label for="quantity" style="font-weight: bold; margin-right: 10px;">Quantity:</label>
+      <label for="quantity" style="font-weight: bold; margin-right: 10px; color: gray;">Quantity:</label>
       <div class="quantity-wrapper" style="display: inline-flex; align-items: center;">
-        <button type="button" onclick="updateQuantity(-1)" style="padding: 5px 10px; font-size: 1rem;">-</button>
-        <input type="number" id="quantity" name="quantity" value="1" min="1" style="width: 50px; text-align: center; margin: 0 10px; font-size: 1rem;">
-        <button type="button" onclick="updateQuantity(1)" style="padding: 5px 10px; font-size: 1rem;">+</button>
+        <button type="button" onclick="updateQuantity(-1)" style=" font-size: 1rem; width: 30px;">-</button>
+        <input type="text" id="quantity" name="quantity" value="1" min="1" style="width: 50px; text-align: center;  font-size: 1rem;">
+        <button type="button" onclick="updateQuantity(1)" style=" font-size: 1rem; width: 30px;">+</button>
       </div>
     </div>
     <%= form_with url: orders_path, method: :post do |f| %>
