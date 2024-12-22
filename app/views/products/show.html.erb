@@ -10,36 +10,48 @@
   </div>
   <div class="product-details">
     <h1><%= @product.name %></h1>
-    <p class="price">
-      $<%= @product.price %> <span class="deck-info">(One Deck - 52 Cards)</span>
+    <p class="price" style="font-size: 1.5rem; color: #f57224;">
+      ৳ <%= @product.price %> <span class="deck-info">(One Deck - 52 Cards)</span>
     </p>
-    <p class="price">
+    <p class="price" style="font-size: 1.5rem; color: #f57224;">
+      <% if @product.discount.present? %>
       <%= @product.discount %> % <span class="deck-info">Discount</span>
+      <% end %>
     </p>
     <p class="description">
       <%= @product.description %>
     </p>
-
+    <div style="text-align: left; margin: 20px 0;">
+      <label for="quantity" style="font-weight: bold; margin-right: 10px;">Quantity:</label>
+      <div class="quantity-wrapper" style="display: inline-flex; align-items: center;">
+        <button type="button" onclick="updateQuantity(-1)" style="padding: 5px 10px; font-size: 1rem;">-</button>
+        <input type="number" id="quantity" name="quantity" value="1" min="1" style="width: 50px; text-align: center; margin: 0 10px; font-size: 1rem;">
+        <button type="button" onclick="updateQuantity(1)" style="padding: 5px 10px; font-size: 1rem;">+</button>
+      </div>
+    </div>
     <%= form_with url: orders_path, method: :post do |f| %>
       <%= f.hidden_field :product_id, value: @product.id %>
       <%= f.hidden_field :user_id, value: current_user.id %> <!-- User ID -->
       <%= f.hidden_field :total_price, value: @product.price %> <!-- Total price -->
 
-      <div class="quantity-wrapper">
-        <label for="quantity">QTY</label>
-        <input type="number" id="quantity" name="quantity" value="1" min="1">
+      <div style="display: flex; justify-content: left; gap: 10px; margin-bottom: 20px; margin-top: 20px;">
+        <%= f.submit "Buy Now", class: "buy-now-btn", style: "padding: 10px 20px; background-color: #28a745; color: #fff; border: none; border-radius: 4px; cursor: pointer;" %>
+        <%= f.submit "Add to Cart", class: "add-to-cart-btn", style: "padding: 10px 20px; background-color: #f57224; color: #fff; border: none; border-radius: 4px; cursor: pointer;" %>
       </div>
-
-      <%= f.submit "Place Order", class: "add-to-cart" %>
     <% end %>
-
-    <p class="member-offer">
-      Holstee Members save 20%! <a href="#">Login</a> or <a href="#">Join Today.</a>
-    </p>
-    <div>
-      <%= link_to "Edit this product", edit_product_path(@product) %> |
-      <%= link_to "Back to products", products_path %>
-      <%= button_to "Destroy this product", @product, method: :delete, data: { confirm: "Are you sure?" } %>
-    </div>
+<!--    <div>-->
+<!--      <%#= link_to "Edit this product", edit_product_path(@product) %> |-->
+      <%#= link_to "Back to products", products_path %>
+      <%#= button_to "Destroy this product", @product, method: :delete, data: { confirm: "Are you sure?" } %>
+<!--    </div>-->
   </div>
 </div>
+
+<script>
+    function updateQuantity(amount) {
+        const quantityField = document.getElementById('quantity');
+        let currentQuantity = parseInt(quantityField.value);
+        currentQuantity = isNaN(currentQuantity) ? 1 : currentQuantity + amount;
+        quantityField.value = Math.max(1, currentQuantity);
+    }
+</script>
