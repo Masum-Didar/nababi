@@ -1,0 +1,76 @@
+<style>
+    /* Always full width for small screens */
+    @media (max-width: 990px) {
+        #main-content {
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+    }
+
+    /* Shrink when sidebar is open for large screens */
+    @media (min-width: 991px) {
+        #main-content {
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+        body.offcanvas-open #main-content {
+            width: calc(100% - 250px); /* Assuming sidebar width is 250px */
+        }
+    }
+</style>
+
+
+
+<button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
+  Enable both scrolling & backdrop
+</button>
+
+<div id="main-content">
+  <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Colored with scrolling</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <p>Try scrolling the rest of the page to see this option in action.</p>
+    </div>
+  </div>
+
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasWithBackdrop" aria-labelledby="offcanvasWithBackdropLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasWithBackdropLabel">Offcanvas with backdrop</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <p>.....</p>
+    </div>
+  </div>
+
+  <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Backdroped with scrolling</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <p>Try scrolling the rest of the page to see this option in action.</p>
+    </div>
+  </div>
+
+  <!-- Your other page content inside #main-content -->
+  <div class="page-body">
+    <p>This is the main page content that will adjust when sidebar opens on mobile.</p>
+  </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var offcanvasElementList = [].slice.call(document.querySelectorAll('.offcanvas'));
+        offcanvasElementList.forEach(function (offcanvasEl) {
+            offcanvasEl.addEventListener('show.bs.offcanvas', function () {
+                document.body.classList.add('offcanvas-open');
+            });
+            offcanvasEl.addEventListener('hidden.bs.offcanvas', function () {
+                document.body.classList.remove('offcanvas-open');
+            });
+        });
+    });
+</script>

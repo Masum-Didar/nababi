@@ -18,3 +18,11 @@ main {
     position: absolute;
     z-index: 1000;
 }
+
+#sidebar {
+ transition: all 0.3s ease;
+}
+.sidebar-menu-icon {
+    width: 25px;  /* Adjust width as needed */
+    /*height: auto; !* Maintain aspect ratio *!*/
+}
