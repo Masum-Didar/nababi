@@ -1,9 +1,13 @@
 class ApplicationController < ActionController::Base
-  # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
-  before_action :authenticate_user!
+  layout :set_layout
+
+  # Check browser compatibility first
   allow_browser versions: :modern
 
+  # Authenticate user after checking browser
+  before_action :authenticate_user!
 
+  # Devise strong parameters
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected
@@ -13,4 +17,13 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update, keys: [:name])
   end
 
+  private
+
+  def set_layout
+    if controller_path.start_with?('admin/')
+      "admin"   # => app/views/layouts/admin.html.erb
+    else
+      "public"  # => app/views/layouts/public.html.erb
+    end
+  end
 end
