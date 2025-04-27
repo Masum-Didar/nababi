@@ -1,0 +1,53 @@
+<p style="color: green"><%= notice %></p>
+
+<div class="product-container" id="<%= dom_id(@product) %>">
+  <div class="product-image">
+    <% if @product.images.attached? %>
+      <%= image_tag(@product.images.first, style: "width: 100%; height: auto;") %>
+    <% else %>
+      <p>No images available.</p>
+    <% end %>
+  </div>
+  <div class="product-details">
+    <h1><%= @product.name %></h1>
+    <p class="price" style="font-size: 1.5rem; color: #f57224;">
+      ৳ <%= @product.price %> <span class="deck-info">(One Deck - 52 Cards)</span>
+    </p>
+    <p class="price" style="font-size: 1.5rem; color: #f57224;">
+      <% if @product.discount.present? %>
+      <%= @product.discount %> % <span class="deck-info">Discount</span>
+      <% end %>
+    </p>
+    <p class="description">
+      <%= @product.description %>
+    </p>
+    <div style="text-align: left; margin: 20px 0;">
+      <label for="quantity" style="font-weight: bold; margin-right: 10px; color: gray;">Quantity:</label>
+      <div class="quantity-wrapper" style="display: inline-flex; align-items: center;">
+        <button type="button" onclick="updateQuantity(-1)" style=" font-size: 1rem; width: 30px;">-</button>
+        <input type="text" id="quantity" name="quantity" value="1" min="1" style="width: 50px; text-align: center;  font-size: 1rem;">
+        <button type="button" onclick="updateQuantity(1)" style=" font-size: 1rem; width: 30px;">+</button>
+      </div>
+    </div>
+    <%= form_with url: cart_path, method: :post, id: "add-to-cart-form" do |f| %>
+      <%= f.hidden_field :product_id, value: @product.id %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      <%= f.hidden_field :quantity, value: 1, id: "hidden-quantity" %>
+
+      <div style="display: flex; justify-content: left; gap: 10px; margin-bottom: 20px; margin-top: 20px;">
+        <%= f.submit "Buy Now", name: "commit", class: "buy-now-btn", style: "padding: 10px 20px; background-color: #28a745; color: #fff; border: none; border-radius: 4px; cursor: pointer;" %>
+        <%= button_to "Add to Cart", cart_path, method: :post, params: { product_id: @product.id, quantity: 1 },
+                      class: "add-to-cart-btn", style: "padding: 10px 20px; background-color: #f57224; color: #fff; border: none; border-radius: 4px; cursor: pointer;" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<script>
+    function updateQuantity(amount) {
+        const quantityField = document.getElementById('quantity');
+        let currentQuantity = parseInt(quantityField.value);
+        currentQuantity = isNaN(currentQuantity) ? 1 : currentQuantity + amount;
+        quantityField.value = Math.max(1, currentQuantity);
+    }
+</script>

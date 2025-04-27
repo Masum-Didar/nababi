@@ -1,0 +1,15 @@
+<% content_for :title, "New product" %>
+
+<div class="heading_container" style="align-items: center; padding: 20px;" >
+  <h2>
+    New product
+  </h2>
+</div>
+
+<%= render "form", product: @product %>
+
+<br>
+
+<div>
+  <%= link_to "Back to products", products_path %>
+</div>

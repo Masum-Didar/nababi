@@ -52,7 +52,7 @@ class Admin::ProductsController < ApplicationController
     @product.destroy!
 
     respond_to do |format|
-      format.html { redirect_to products_path, status: :see_other, notice: "Product was successfully destroyed." }
+      format.html { redirect_to admin_products_path, status: :see_other, notice: "Product was successfully destroyed." }
       format.json { head :no_content }
     end
   end

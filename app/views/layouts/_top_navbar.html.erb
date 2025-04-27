@@ -18,7 +18,7 @@
           <% end %>
         </li>
         <li class="nav-item">
-          <%= link_to root_path, method: :delete, class: 'nav-link' do %>
+          <%= button_to destroy_user_session_path, method: :delete, class: 'nav-link' do %>
             <i class="fas fa-sign-out-alt me-1"></i> Logout
           <% end %>
         </li>

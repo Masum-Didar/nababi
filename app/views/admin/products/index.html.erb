@@ -1,25 +1,40 @@
-<!-- Recent Users Table -->
+<!-- Recent Products Table -->
 <div class="card mb-5">
-  <div class="card-header">
-    Recent Products
+  <div class="card-header d-flex justify-content-between">
+    <span>Recent Products</span>
+    <%= link_to 'Add Product', new_admin_product_path, class: 'btn btn-primary' %>
   </div>
   <div class="card-body table-responsive">
     <table class="table table-hover">
       <thead>
       <tr>
         <th>Name</th>
-        <th>Email</th>
-        <th>Joined</th>
-        <th>Status</th>
+        <th>description</th>
+        <th>price</th>
+        <th>discount</th>
+        <th>Actions</th> <!-- New column for action buttons -->
       </tr>
       </thead>
       <tbody>
       <% @products.each do |product| %>
         <tr>
           <td><%= product.name %></td>
-          <td><%= product.name %></td>
-          <td><%= product.name %></td>
-          <td><span class="badge bg-success">Active</span></td>
+          <td><%= product.description %></td> <!-- Assuming there’s an email attribute -->
+          <td><%= product.price %></td> <!-- Assuming there’s an email attribute -->
+          <td><%= product.discount %></td> <!-- Assuming there’s an email attribute -->
+
+          <td>
+             <%= link_to edit_admin_product_path(product) do %>
+              <button class="btn btn-success"><i class="fa fa-edit"></i></button>
+            <% end %>
+            <%= link_to admin_product_path(product) do %>
+              <button class="btn btn-info"><i class="fa fa-eye"></i></button>
+            <% end %>
+            <%= link_to admin_product_path(product), data: {turbo_method: :delete, confirm: 'Are you sure you want to delete this product?'} do %>
+              <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+            <% end %>
+
+          </td>
         </tr>
       <% end %>
       </tbody>

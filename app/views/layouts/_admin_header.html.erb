@@ -10,22 +10,27 @@
   <div class="offcanvas-body">
     <ul class="nav flex-column">
       <li class="nav-item mb-2">
-        <%= link_to root_path, class: 'nav-link active' do %>
+        <%= link_to dashboard_admin_homes_path, class: 'nav-link active' do %>
           <i class="fas fa-tachometer-alt me-2"></i> Dashboard
         <% end %>
       </li>
       <li class="nav-item mb-2">
-        <%= link_to root_path, class: 'nav-link' do %>
+        <%= link_to admin_users_path, class: 'nav-link' do %>
           <i class="fas fa-users me-2"></i> Users
         <% end %>
       </li>
       <li class="nav-item mb-2">
-        <%= link_to root_path, class: 'nav-link' do %>
+        <%= link_to admin_products_path, class: 'nav-link' do %>
+          <i class="fas fa-box me-2"></i> Products
+        <% end %>
+      </li>
+      <li class="nav-item mb-2">
+        <%= link_to dashboard_admin_homes_path, class: 'nav-link' do %>
           <i class="fas fa-file-invoice-dollar me-2"></i> Sales
         <% end %>
       </li>
       <li class="nav-item">
-        <%= link_to root_path, class: 'nav-link' do %>
+        <%= link_to dashboard_admin_homes_path, class: 'nav-link' do %>
           <i class="fas fa-cogs me-2"></i> Settings
         <% end %>
       </li>

@@ -2,6 +2,12 @@ Rails.application.routes.draw do
   devise_for :users
   # resources :products
   namespace :admin do
+    resources :homes do
+      collection do
+        get 'dashboard'
+      end
+    end
+    resources :users
     resources :products
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
